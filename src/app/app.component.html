@@ -1,0 +1,43 @@
+<div class="wrapper">
+  <div class="current-time">
+    <span id="current-time-title">UTC{{timezoneOffset}}</span>
+    <span id="time">{{time.hours}}:{{time.minutes}}:{{time.seconds}}</span>
+  </div>
+  <div class="message">
+    <span *ngIf="isOnAir" id="onair">on air</span>
+    <span *ngIf="!isOnAir&&onAirTime" id="air-time">Air time: {{onAirTime.h}}:{{onAirTime.m}}:{{onAirTime.s}}</span>
+  </div>
+  <form [formGroup]="timeForm" (ngSubmit)="onStartCount()">
+    <div class="time-input">
+      <span *ngIf="isOnAir" class="sign">+</span>
+      <span *ngIf="!isOnAir&&onAirTime" class="sign">-</span>
+      <input type="text"
+      id="hour"
+      placeholder='00'
+      min=0
+      maxlength=2
+      [ngStyle]="invalidInputStyle(this.timeForm.controls.hours)"
+      formControlName="hours">
+      <span>h</span>
+      <input type="text"
+       id="min"
+       placeholder='00'
+       min=2
+       maxlength=2
+       [ngStyle]="invalidInputStyle(this.timeForm.controls.minutes)"
+       formControlName="minutes">
+      <span>m</span>
+      <input type="text"
+      id="sec"
+      placeholder='00'
+      min=0
+      maxlength=2
+      [ngStyle]="invalidInputStyle(this.timeForm.controls.seconds)"
+      formControlName="seconds">
+      <span>sec</span>
+    </div>
+    <button type="submit" name="submit" id="submit">Start</button>
+    <button type="button" name="clear" id="clear" (click)="onClearCount()">Clear</button>
+  </form>
+
+</div>
