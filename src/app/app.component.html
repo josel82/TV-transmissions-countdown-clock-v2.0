@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="current-time">
-    <span id="current-time-title">UTC{{timezoneOffset}}</span>
+    <span id="current-time-title">UTC{{timezone}}</span>
     <span id="time">{{time.hours}}:{{time.minutes}}:{{time.seconds}}</span>
   </div>
   <div class="message">
@@ -9,32 +9,28 @@
   </div>
   <form [formGroup]="timeForm" (ngSubmit)="onStartCount()">
     <div class="time-input">
-      <span *ngIf="isOnAir" class="sign">+</span>
-      <span *ngIf="!isOnAir&&onAirTime" class="sign">-</span>
-      <input type="text"
+      <span *ngIf="isOnAir" class="sign units">+</span>
+      <span *ngIf="!isOnAir&&onAirTime" class="sign units" style="color:#fe6468">-</span>
+      <input type="tel"
       id="hour"
-      placeholder='00'
       min=0
-      maxlength=2
+      placeholder='00'
       [ngStyle]="invalidInputStyle(this.timeForm.controls.hours)"
       formControlName="hours">
-      <span>h</span>
-      <input type="text"
+      <span class="units">h</span>
+      <input type="tel"
        id="min"
        placeholder='00'
-       min=2
-       maxlength=2
        [ngStyle]="invalidInputStyle(this.timeForm.controls.minutes)"
        formControlName="minutes">
-      <span>m</span>
-      <input type="text"
+      <span class="units">m</span>
+      <input type="tel"
       id="sec"
       placeholder='00'
-      min=0
-      maxlength=2
+      min="00"
       [ngStyle]="invalidInputStyle(this.timeForm.controls.seconds)"
       formControlName="seconds">
-      <span>sec</span>
+      <span class="units">sec</span>
     </div>
     <button type="submit" name="submit" id="submit">Start</button>
     <button type="button" name="clear" id="clear" (click)="onClearCount()">Clear</button>

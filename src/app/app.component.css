@@ -2,9 +2,10 @@
 .wrapper{
   display: grid;
   grid-template-columns:  1fr 1fr;
-  grid-auto-rows: minmax(50px, auto);
+  grid-auto-rows: minmax(70px, auto);
   margin-top: 20px;
   height: 90%;
+  color: #757575;
 }
 .message{
   grid-column-start: 1;
@@ -13,17 +14,15 @@
   justify-self: center;
 }
 #onair{
-  font-family: 'Anton', sans-serif;
   text-transform: uppercase;
   color: #ff6969;
-  font-weight: 700;
+  font-weight: 300;
+  font-size: 3.5em;
 }
 
-#onair, #air-time{
-  font-size: 23px;
-}
 #air-time{
-  color: #777;
+  font-size: 23px;
+  color: black;
 }
 
 .current-time{
@@ -33,7 +32,6 @@
   grid-column-end: 3;
   align-self: center;
   justify-self: center;
-  color: #777;
 }
 #time{
   justify-self: center;
@@ -49,7 +47,6 @@ form{
   grid-column-end: 3;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /*align-self: end;*/
 }
 .time-input{
   grid-column-start: 1;
@@ -59,37 +56,37 @@ form{
 
 .time-input span{
   font-family: 'Open Sans', sans-serif;
-  color: #777;
 }
 
 .time-input span.sign{
   font-size: 2em;
 }
 
-input[type=text] {
+input[type=tel] {
   font-family: 'Open Sans', sans-serif;
-  width: 60px;
+  width: 100px;
   font-weight: 400;
-  font-size: 50px;
+  font-size: 90px;
   text-align: center;
   background-color: transparent;
   border:none;
-  color: #777;
 }
 
-input[type=text]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #a7a7a7;
+input[type=tel]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #9d9d9d;
 }
-input[type=text]::-moz-placeholder { /* Firefox 19+ */
-  color: #a7a7a7;
+input[type=tel]::-moz-placeholder { /* Firefox 19+ */
+  color: #9d9d9d;
 }
-input[type=text]:-ms-input-placeholder { /* IE 10+ */
-  color: #a7a7a7;
+input[type=tel]:-ms-input-placeholder { /* IE 10+ */
+  color: #9d9d9d;
 }
-input[type=text]:-moz-placeholder { /* Firefox 18- */
-  color: #a7a7a7;
+input[type=tel]:-moz-placeholder { /* Firefox 18- */
+  color: #9d9d9d;
 }
-
+.units{
+  display: none;
+}
 button{
   width: 150px;
   height: 55px;
@@ -122,16 +119,16 @@ button#clear:active{
 
 /*****for-tablet-portrait-up***/
 @media (min-width: 600px) {
-  #onair, #time{
+  #onair{
+    font-size: 3.5em;
+  }
+   #time{
     font-size: 55px;
   }
   #air-time, #current-time-title{
     font-size: 23px;
   }
 
-  form{
-
-  }
   .time-input span{
     font-size: 1.5em;
   }
@@ -139,10 +136,13 @@ button#clear:active{
     font-size: 6em;
     line-height: 84px;
   }
-  input[type=text] {
+  input[type=tel] {
     width: 150px;
     font-weight: 400;
     font-size: 118px;
+  }
+  .units{
+    display: inline;
   }
   button{
     width: 228px;
@@ -181,7 +181,6 @@ button#clear:active{
     margin-top: 150px;
     grid-column-start: 2;
     grid-column-end: 4;
-    /*margin-top: 300px;*/
   }
 }
 
