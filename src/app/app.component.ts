@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 
-import { CounterService } from "./counter.service";
+import { CounterService } from "./services/counter.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
@@ -10,12 +10,16 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 })
 export class AppComponent implements OnInit{
   timeForm: FormGroup;
+  time;
+  hoursControl;
+  minutesControl;
+  secondsControl;
   isOnAir:boolean = false;
   isCounting:boolean = false;
   onAirTime;
   timezone:string;
   now = new Date();
-  time;
+
 
 
   constructor(private counterService: CounterService) { }
@@ -39,7 +43,6 @@ export class AppComponent implements OnInit{
                                         Validators.pattern('^[0-9]+$')])
     });
 
-
     this.time = this.counterService.currentTime;
 
     this.timezone = this.counterService.timezone;
@@ -51,13 +54,17 @@ export class AppComponent implements OnInit{
         'seconds' : time.sec
       })
     });
+
+    this.hoursControl = this.timeForm.controls.hours;
+    this.minutesControl = this.timeForm.controls.minutes;
+    this.secondsControl = this.timeForm.controls.seconds;
+
     this.counterService.flag.subscribe((flag)=>{
       this.isOnAir = flag;
     });
   }
 
   onStartCount(){
-
 
     let h = this.timeForm.controls.hours.value;
     let m = this.timeForm.controls.minutes.value;
@@ -94,13 +101,7 @@ onClearCount(){
   this.onAirTime = null;
   this.isCounting = false;
   this.isOnAir = false;
-  this.timeForm.markAsUntouched();
+  this.timeForm.reset();
 }
-invalidInputStyle(control){
 
-  return {
-    boxShadow: control.invalid&&control.touched ? '0 2px 5px 2px #f18282' : 'none',
-    color: !this.isOnAir&&this.isCounting ? '#fe6468' : '#757575'
-  }
-}
 }

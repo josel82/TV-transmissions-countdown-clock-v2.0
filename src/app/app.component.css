@@ -47,21 +47,22 @@ form{
   grid-column-end: 3;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-self: end;
 }
 .time-input{
   grid-column-start: 1;
   grid-column-end: 3;
   justify-self:center;
+  margin-bottom: 40px;
 }
 
 .time-input span{
   font-family: 'Open Sans', sans-serif;
 }
 
-.time-input span.sign{
-  font-size: 2em;
+.units{
+  display: none;
 }
-
 input[type=tel] {
   font-family: 'Open Sans', sans-serif;
   width: 100px;
@@ -84,9 +85,7 @@ input[type=tel]:-ms-input-placeholder { /* IE 10+ */
 input[type=tel]:-moz-placeholder { /* Firefox 18- */
   color: #9d9d9d;
 }
-.units{
-  display: none;
-}
+
 button{
   width: 150px;
   height: 55px;
@@ -128,22 +127,52 @@ button#clear:active{
   #air-time, #current-time-title{
     font-size: 23px;
   }
-
+  .time-input{
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 50px 1fr 17px 1fr 17px 1fr 17px;
+    grid-template-areas:
+    "sign hour h min m sec s";
+  }
   .time-input span{
     font-size: 1.5em;
   }
   .time-input span.sign{
     font-size: 6em;
     line-height: 84px;
+    grid-area: sign;
+    align-self: center;
+  }
+
+  #hour{
+    grid-area: hour;
+  }
+  #min{
+    grid-area: min;
+  }
+  #sec{
+    grid-area: sec;
+  }
+  .units{
+    display: inline;
+
+    align-self:end;
+  }
+  .units .hour{
+    grid-area: h;
+  }
+  .units .min{
+    grid-area: m;
+  }
+  .units .sec{
+    grid-area: s;
   }
   input[type=tel] {
     width: 150px;
     font-weight: 400;
     font-size: 118px;
   }
-  .units{
-    display: inline;
-  }
+
   button{
     width: 228px;
     height: 84px;
@@ -167,8 +196,8 @@ button#clear:active{
   .message{
     grid-column-start: 2;
     grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
+    /*grid-row-start: 1;
+    grid-row-end: 2;*/
     align-self: end;
   }
 

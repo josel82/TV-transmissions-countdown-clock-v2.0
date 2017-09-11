@@ -11,26 +11,34 @@
     <div class="time-input">
       <span *ngIf="isOnAir" class="sign units">+</span>
       <span *ngIf="!isOnAir&&onAirTime" class="sign units" style="color:#fe6468">-</span>
+      <span *ngIf="!isOnAir&&!onAirTime" class="sign units" style="widht:50px"></span>
       <input type="tel"
       id="hour"
-      min=0
+      maxlength="2"
       placeholder='00'
-      [ngStyle]="invalidInputStyle(this.timeForm.controls.hours)"
+      appAutoFocus
+      [appInvalid]="hoursControl.invalid&&hoursControl.touched"
+      [appHighlight]="!this.isOnAir&&this.isCounting"
       formControlName="hours">
-      <span class="units">h</span>
       <input type="tel"
        id="min"
+       maxlength="2"
        placeholder='00'
-       [ngStyle]="invalidInputStyle(this.timeForm.controls.minutes)"
+       appAutoFocus
+       [appInvalid]="minutesControl.invalid&&minutesControl.touched"
+       [appHighlight]="!this.isOnAir&&this.isCounting"
        formControlName="minutes">
-      <span class="units">m</span>
       <input type="tel"
       id="sec"
+      maxlength="2"
       placeholder='00'
-      min="00"
-      [ngStyle]="invalidInputStyle(this.timeForm.controls.seconds)"
+      appAutoFocus
+      [appInvalid]="secondsControl.invalid&&secondsControl.touched"
+      [appHighlight]="!this.isOnAir&&this.isCounting"
       formControlName="seconds">
-      <span class="units">sec</span>
+      <span class="units hour">h</span>
+      <span class="units min">m</span>
+      <span class="units sec">sec</span>
     </div>
     <button type="submit" name="submit" id="submit">Start</button>
     <button type="button" name="clear" id="clear" (click)="onClearCount()">Clear</button>

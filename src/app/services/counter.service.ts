@@ -32,12 +32,13 @@ export class CounterService {
     //Activates the Countdown clock
     if(this.countingDown){
       this.timeUpdated.next(this.diff(this.input, date));
-    }
 
-    //sets current time
-    this.currentTime.hours = hours;
-    this.currentTime.minutes = minutes;
-    this.currentTime.seconds = seconds;
+    }
+      //sets current time
+      this.currentTime.hours = hours;
+      this.currentTime.minutes = minutes;
+      this.currentTime.seconds = seconds;
+    
   }
 
  //Countdown clock
