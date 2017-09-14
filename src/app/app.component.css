@@ -57,23 +57,52 @@ form{
   grid-column-end: 3;
   justify-self:center;
   margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: 1fr 0.5em 1fr 0.5em 1fr 0.5em;
+  grid-template-areas:
+  "hour h min m sec s";
 }
 
 .time-input span{
   font-family: 'Open Sans', sans-serif;
 }
-
+#hour{
+  grid-area: hour;
+}
+#min{
+  grid-area: min;
+}
+#sec{
+  grid-area: sec;
+}
 .units{
+  align-self:center;
+  justify-self:center;
+  font-size: 2.5em;
+  padding-left: 5px;
+}
+.units.hour{
+  grid-area: h;
+}
+.units.min{
+  grid-area: m;
+}
+.units.sec {
+  display: none;
+  grid-area: s;
+}
+.time-input span.sign{
   display: none;
 }
 input[type=tel] {
   font-family: 'Open Sans', sans-serif;
-  width: 100px;
+  width: 95px;
   font-weight: 400;
   font-size: 90px;
   text-align: center;
   background-color: transparent;
   border:none;
+  letter-spacing: -0.05em;
 }
 
 input[type=tel]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -136,44 +165,29 @@ button#clear:active{
   }
   .time-input{
     margin-bottom: 20px;
-    display: grid;
+    padding-left: 0;
     grid-template-columns: 50px 1fr 17px 1fr 17px 1fr 17px;
     grid-template-areas:
     "sign hour h min m sec s";
   }
+
   .time-input span{
     font-size: 1.5em;
   }
   .time-input span.sign{
+    display: inline;
     font-size: 6em;
     line-height: 84px;
     grid-area: sign;
     align-self: center;
   }
-
-  #hour{
-    grid-area: hour;
-  }
-  #min{
-    grid-area: min;
-  }
-  #sec{
-    grid-area: sec;
-  }
   .units{
-    display: inline;
-
     align-self:end;
   }
-  .units .hour{
-    grid-area: h;
+  .units.sec{
+    display: inline;
   }
-  .units .min{
-    grid-area: m;
-  }
-  .units .sec{
-    grid-area: s;
-  }
+
   input[type=tel] {
     width: 150px;
     font-weight: 400;

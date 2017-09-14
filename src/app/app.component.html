@@ -36,8 +36,14 @@
       [appInvalid]="secondsControl.invalid&&secondsControl.touched"
       [appHighlight]="!this.isOnAir&&this.isCounting"
       formControlName="seconds">
-      <span class="units hour">h</span>
-      <span class="units min">m</span>
+      <span class="units hour"
+      appViewportDetector
+      timeUnit="h"
+      [appHighlight]="!this.isOnAir&&this.isCounting">h</span>
+      <span class="units min"
+      appViewportDetector
+      timeUnit="m"
+      [appHighlight]="!this.isOnAir&&this.isCounting">m</span>
       <span class="units sec">sec</span>
     </div>
     <button type="submit" name="submit" id="submit">Start</button>
