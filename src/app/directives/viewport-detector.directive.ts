@@ -25,9 +25,4 @@ export class ViewportDetectorDirective implements OnInit{
         }
       });
     }
-
-
-    // if(e.currentTarget.innerHeight<=415){
-    //   this.innerHtml = ':';
-    // }else
 }

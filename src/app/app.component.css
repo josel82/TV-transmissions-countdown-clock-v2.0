@@ -96,12 +96,13 @@ form{
 }
 input[type=tel] {
   font-family: 'Open Sans', sans-serif;
-  width: 100px;
+  width: 95px;
   font-weight: 400;
   font-size: 90px;
   text-align: center;
   background-color: transparent;
   border:none;
+  letter-spacing: -0.05em;
 }
 
 input[type=tel]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -175,6 +176,7 @@ button#clear:active{
     font-size: 1.5em;
   }
   .time-input span.sign{
+    display: inline;
     font-size: 6em;
     line-height: 84px;
     grid-area: sign;
