@@ -11,6 +11,7 @@ export class AutoFocusDirective implements OnInit {
   constructor(private elRef: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit(){
+
     this.renderer.listen(this.target, 'keyup', ()=>{
 
       if(this.target.value.length>=this.target.maxLength){

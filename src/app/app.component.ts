@@ -1,7 +1,9 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { CounterService } from "./services/counter.service";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { TimeService } from "./services/time.service";
+
 
 @Component({
   selector: 'app-root',
@@ -22,37 +24,38 @@ export class AppComponent implements OnInit{
 
 
 
-  constructor(private counterService: CounterService) { }
+  constructor(private counterService: CounterService,
+              private timeService: TimeService) { }
 
+//Initialization
   ngOnInit() {
     this.timeForm = new FormGroup({
-      'hours' : new FormControl(null, [Validators.required,
-                                       Validators.min(0),
+      'hours' : new FormControl(null, [Validators.min(0),
                                        Validators.max(23),
                                        Validators.maxLength(2),
                                        Validators.pattern('^[0-9]+$')]),
-      'minutes': new FormControl(null, [Validators.required,
-                                        Validators.min(0),
+      'minutes': new FormControl(null, [Validators.min(0),
                                         Validators.max(59),
                                         Validators.maxLength(2),
                                         Validators.pattern('^[0-9]+$')]),
-      'seconds': new FormControl(null, [Validators.required,
-                                        Validators.min(0),
+      'seconds': new FormControl(null, [Validators.min(0),
                                         Validators.max(59),
                                         Validators.maxLength(2),
                                         Validators.pattern('^[0-9]+$')])
     });
 
-    this.time = this.counterService.currentTime;
+    this.timeService.timeInterval.subscribe((time)=>{
+      this.time = time;
+    });
 
-    this.timezone = this.counterService.timezone;
+    this.timezone = this.timeService.timezone;
 
-    this.counterService.timeUpdated.subscribe((time)=>{
+    this.counterService.countUpdated.subscribe((time)=>{
       this.timeForm.setValue({
         'hours' : time.hour,
         'minutes' : time.min,
         'seconds' : time.sec
-      })
+      });
     });
 
     this.hoursControl = this.timeForm.controls.hours;
@@ -64,11 +67,16 @@ export class AppComponent implements OnInit{
     });
   }
 
+
   onStartCount(){
 
-    let h = this.timeForm.controls.hours.value;
-    let m = this.timeForm.controls.minutes.value;
-    let s = this.timeForm.controls.seconds.value;
+    let hInput = this.timeForm.controls.hours.value;
+    let mInput = this.timeForm.controls.minutes.value;
+    let sInput = this.timeForm.controls.seconds.value;
+
+    let h = hInput === null ? 0 : hInput;
+    let m = mInput === null ? 0 : mInput;
+    let s = sInput === null ? 0 : sInput;
 
     if(this.timeForm.invalid){
       alert('Invalid input!');
