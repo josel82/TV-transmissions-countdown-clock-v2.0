@@ -11,8 +11,8 @@ import { TimeService } from "./services/time.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+
   timeForm: FormGroup;
-  time;
   hoursControl;
   minutesControl;
   secondsControl;
@@ -21,7 +21,11 @@ export class AppComponent implements OnInit{
   onAirTime;
   timezone:string;
   now = new Date();
-
+  time = {
+    hours: '00',
+    minutes: '00',
+    seconds: '00'
+  }
 
 
   constructor(private counterService: CounterService,
@@ -29,6 +33,7 @@ export class AppComponent implements OnInit{
 
 //Initialization
   ngOnInit() {
+
     this.timeForm = new FormGroup({
       'hours' : new FormControl(null, [Validators.min(0),
                                        Validators.max(23),

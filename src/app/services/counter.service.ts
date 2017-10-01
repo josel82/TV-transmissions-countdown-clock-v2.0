@@ -28,8 +28,8 @@ export class CounterService {
 
  //Countdown clock
   diff(t2,t1){
-    let res = Math.abs(Math.floor((t2-t1)/1000)); // This line of code allows to sync the current time
-                                                  // with the count down.
+    let res = Math.abs(Math.floor((t2/1000))- Math.floor((t1/1000))); // This line of code allows to sync the current time
+                                                                     // with the count down.
     if(res === 0 ){ //checks if the time is out
        this.flag.next(true); //turns the "On Air" sign on
     }
